@@ -17,7 +17,7 @@ const getOneUser = async (req, res) => {
     console.log(error);
   }
 };
-const postUser = async (req, res) => {
+const postUser = async (req, res) => {  
   try {
     const { name, email, contactNo } = req.body;
     const newUser = new userSchema({
