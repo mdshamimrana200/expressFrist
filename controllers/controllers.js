@@ -23,6 +23,19 @@ const getOneUser = async (req, res) => {
     console.log(error);
   }
 };
+const getOneUserName = async (req, res) => {
+  try {
+    const oneUser = await userSchema.findOne({ name: req.params.name });
+    if(oneUser){
+        res.status(200).send(oneUser);
+    }else{
+        res.status(404).send("name is not found");
+        
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 const postUser = async (req, res) => {  
   try {
     const { name, email, contactNo } = req.body;
@@ -61,4 +74,4 @@ const deleteUser =async (req, res) => {
   }
 };
 
-module.exports = { getUser, postUser, putUser, deleteUser, getOneUser };
+module.exports = { getUser, postUser, putUser, deleteUser, getOneUser, getOneUserName };
