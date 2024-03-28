@@ -2,10 +2,10 @@ const { v4 } = require("uuid");
 const userSchema = require("../model/usersStructure");
 const { boolean } = require("webidl-conversions");
 
+const alluser =async () => await userSchema.find();
 const getUser = async (req, res) => {
   try {
-    const allUsers = await userSchema.find();
-    res.status(200).send(allUsers);
+    res.status(200).send(await alluser());
   } catch (error) {
     console.log(error);
   }
@@ -42,7 +42,7 @@ const postUser = async (req, res) => {
     const newUser = new userSchema({
       name,
       email,
-      phonNumber: Number(contactNo), 
+      phonNumber: contactNo, 
     });
     await newUser.save();
     res.status(201).send(newUser + "create user");
@@ -67,11 +67,13 @@ const putUser =async (req, res) => {
 const deleteUser =async (req, res) => {
   try {
     const id = req.params.id;
-    const deleteUser =await userSchema.deleteOne({id:id})
-    res.status(200).send(deleteUser)
+    const {number} = req.body;
+    const deleteUser = await userSchema.deleteOne({phonNumber:number})
+
+    res.status(200).send(number)
   } catch (error) {
     console.log(error);
   }
-};
+}; 
 
 module.exports = { getUser, postUser, putUser, deleteUser, getOneUser, getOneUserName };

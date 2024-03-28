@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
         require: true
     },
     phonNumber: {
-        type: Number,
+        type: String,
     },
     createdOn: {
         type: Date,
