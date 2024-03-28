@@ -1,10 +1,12 @@
 const routers = require("./routers/routarse");
 const express = require("express");
+const cors = require("cors")
 const app = express();
 require("./model/db")
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 app.get("/",(req,res)=>{
     res.send("<h1>I AM HOME")
