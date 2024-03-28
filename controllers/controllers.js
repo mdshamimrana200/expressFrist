@@ -23,7 +23,7 @@ const postUser = async (req, res) => {
     const newUser = new userSchema({
       name,
       email,
-      phonNumber: Number(contactNo),
+      phonNumber: Number(contactNo), 
     });
     await newUser.save();
     res.status(201).send(newUser + "create user");
