@@ -1,5 +1,6 @@
 const { v4 } = require("uuid");
 const userSchema = require("../model/usersStructure");
+const { boolean } = require("webidl-conversions");
 
 const getUser = async (req, res) => {
   try {
@@ -12,7 +13,12 @@ const getUser = async (req, res) => {
 const getOneUser = async (req, res) => {
   try {
     const oneUser = await userSchema.findOne({ id: req.params.id });
-    res.status(200).send(oneUser);
+    if(oneUser){
+        res.status(200).send(oneUser);
+    }else{
+        res.status(404).send("id is not found");
+        
+    }
   } catch (error) {
     console.log(error);
   }
