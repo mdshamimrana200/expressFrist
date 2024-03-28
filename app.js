@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors())
 
 app.get("/",(req,res)=>{
-    res.send("<h1>Shamim tumi succes")
+    res.send("<h1>Shamim tumi succes for vercel")
 })
 
 app.use("/users",routers)
